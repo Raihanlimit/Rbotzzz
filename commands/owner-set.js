@@ -12,11 +12,11 @@ exports.run = {
 			setting.header = text
 			m.reply(`*Header Message successfully set.*`)
 		} else if (command == 'setfooter') {
-			if (!text) return m.reply(`• *Example* : ${isPrefix + command} Created by Wildan Izzudin`)
+			if (!text) return m.reply(`• *Example* : ${isPrefix + command} Created by Owner RBOT`)
 			setting.footer = text
 			m.reply(`*Footer Message successfully set.*`)
 		} else if (command == 'setwm') {
-			if (!text || !text.match(/[|]/gi)) return m.reply(`• *Example* : ${isPrefix + command} Sticker by | @neoxrs`)
+			if (!text || !text.match(/[|]/gi)) return m.reply(`• *Example* : ${isPrefix + command} Sticker by | RBOT`)
 			if (text.match(/[|]/gi)) {
 				let [ pack, author ] = text.split`|`
 				setting.sk_pack = pack.trim()
