@@ -1,1 +1,48 @@
-{"users":{"12252501302@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":true,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634300296388,"usebot":0,"spam":0,"warning":0,"banTem":0},"62882009085754@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":true,"expired":0,"limit":5000,"point":0,"hit":1,"lastclaim":0,"lastseen":1634300292574,"usebot":1634299389661,"spam":0,"warning":0,"banTem":0},"6285753761550@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":false,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634300290070,"usebot":0,"spam":0,"warning":0,"banTem":0},"62881037442834@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":false,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634299720454,"usebot":0,"spam":0,"warning":0,"banTem":0},"6285784269274@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":false,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634299750678,"usebot":0,"spam":0,"warning":0,"banTem":0},"6281247030017@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":false,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634300237562,"usebot":0,"spam":0,"warning":0,"banTem":0},"6287893507467@s.whatsapp.net":{"banned":false,"banTemp":false,"premium":false,"expired":0,"limit":5000,"point":0,"hit":0,"lastclaim":0,"lastseen":1634300066377,"usebot":0,"spam":0,"warning":0,"banTem":0}},"groups":{"6281385660352-1633347480@g.us":{"banned":false,"mute":false,"game":false,"welcome":false,"textwel":"","left":false,"textleft":"","notify":false,"spamProtect":false,"localonly":false,"nodelete":true,"nobadword":false,"nolink":false,"novirtex":false,"expired":0,"stay":false},"6281907821055-1613105701@g.us":{"banned":false,"mute":false,"game":false,"welcome":false,"textwel":"","left":false,"textleft":"","notify":false,"spamProtect":false,"localonly":false,"nodelete":true,"nobadword":false,"nolink":false,"novirtex":false,"expired":0,"stay":false}},"chats":{"62882009085754@s.whatsapp.net":{"command":1634299389662,"chat":81,"lastseen":1634300296388},"6281385660352-1633347480@g.us":{"command":0,"chat":8,"lastseen":1634300290070},"6281907821055-1613105701@g.us":{"command":0,"chat":9,"lastseen":1634299750678},"994404774407@s.whatsapp.net":{"command":0,"chat":1,"lastseen":1634299871437}},"sticker":{},"client":{},"setting":{"autoread":false,"autoclear":false,"autobackup":true,"backupTime":1634299871451,"groupOnly":false,"simsimi":false,"public":true,"games":true,"errorCmd":[],"toxic":["ajg","ajig","anjas","anjg","anjim","anjing","anjrot","anying","asw","autis","babi","bacod","bacot","bagong","bajingan","bangsad","bangsat","bastard","bego","bgsd","biadab","biadap","bitch","bngst","bodoh","bokep","cocote","coli","colmek","comli","dajjal","dancok","dongo","fuck","gelay","goblog","goblok","guoblog","guoblok","hairul","henceut","idiot","itil","jamet","jancok","jembut","jingan","kafir","kanjut","kanyut","keparat","kntl","kontol","lana","loli","lont","lonte","mancing","meki","memek","ngentod","ngentot","ngewe","ngocok","ngtd","njeng","njing","njinx","oppai","pantek","pantek","peler","pepek","pilat","pler","pornhub","pucek","puki","pukimak","redhub","sange","setan","silit","telaso","tempek","tete","titit","toket","tolol","tomlol","tytyd","wildan","xnxx"],"sk_pack":"ORIGINAL","sk_author":"RBOT","multiprefix":true,"prefix":[".","#","!","/"],"onlyprefix":"+","owner":"994404774407","owners":["6285221100126","62882009085754"],"cover":"https://telegra.ph/file/1a01403ed888876beecb1.jpg","header":"JUST FOR FUN","msg":"ɢᴜɴᴀᴋᴀɴ ʙᴏᴛ ᴅᴇɴɢᴀɴ ʙɪᴊᴀᴋ ᴅᴀɴ ᴊᴀɴɢᴀɴ sᴘᴀᴍ😉","footer":"*ᴄʀᴇᴀᴛᴇᴅ ʙʏ ʀᴀɪʜᴀɴ*"}}
+module.exports = (m) => {
+
+if (typeof global.db.users[m.sender] == 'undefined') {
+		global.db.users[m.sender] = {
+			banned: false,
+			banTemp: false,
+			premium: false,
+			expired: 0,
+			limit: 5000,
+			point: 0,
+			hit: 0,
+			lastclaim: 0,
+			lastseen: 0,
+			usebot: 0,
+			spam: 0,
+			warning: 0
+        }
+	}
+	
+	if (typeof global.db.groups[m.chat] == 'undefined' && m.chat.endsWith('g.us')) {
+		global.db.groups[m.chat] = {
+			banned: false,
+			mute: false,
+			game: false,
+			welcome: false,
+			textwel: '',
+			left: false,
+			textleft: '',
+			notify: false,
+			spamProtect: false,
+			localonly: false,
+			nodelete: true,
+			nobadword: false,
+			nolink: false,
+			novirtex: false,
+			expired: 0,
+			stay: false
+        }
+	}
+	
+	if (typeof global.db.chats[m.chat] == 'undefined') {
+		global.db.chats[m.chat] = {
+			command: 0,
+			chat: 0,
+			lastseen: 0
+        }
+	}
+}
