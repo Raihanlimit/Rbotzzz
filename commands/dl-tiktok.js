@@ -23,5 +23,5 @@ exports.run = {
 		return m.reply(_func.status.error)
 	}},
 	error: false,
-	limit: true
+	limit: false
 }
