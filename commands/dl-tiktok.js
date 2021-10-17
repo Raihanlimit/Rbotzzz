@@ -7,7 +7,7 @@ exports.run = {
 		await conn.updatePresence(m.chat, Presence.composing)
 		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://vt.tiktok.com/ZSJTTSNrS`)
 		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/download/tiktok', { url: args[0] }, 'apikey'))).json()
+		let json = await (await fetch(global.API('neoxr', '/download/tiktok', { url: args[0] }, 'Raihans'))).json()
 		if (!json.status) return m.reply(_func.status.fail)
 		if (command == 'tiktok') {
 			await conn.updatePresence(m.chat, Presence.composing)
