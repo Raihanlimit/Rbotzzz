@@ -1,6 +1,6 @@
 let { Presence } = require('@adiwajshing/baileys')
 exports.run = {
-	usage: ['gif', 'sgif', 'sk', 'stiker', 'sticker'],
+	usage: ['gif', 'sgif', 'sk', 's', 'stiker', 'sticker'],
 	async: async (m, { conn, _func }) => {
 	try {
 		let exif = global.db.setting
