@@ -9,7 +9,7 @@ exports.run = {
 		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://www.mediafire.com/file/1fqjqg7e8e2v3ao/YOWA.v8.87_By.SamMods.apk/file`)
 		if (!args[0].match(/(https:\/\/www.mediafire.com)/gi)) return m.reply(_func.status.invalid)
 		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/download/mediafire', { url: args[0] }, 'apikey'))).json()
+		let json = await (await fetch(global.API('neoxr', '/download/mediafire', { url: args[0] }, 'Raihans'))).json()
 		if (!json.status) return m.reply(_func.status.fail)
 		let y = `•  *Name* : ${unescape(decode(json.data.filename))}\n`
 		y += `•  *Mime* : ${json.data.mime}\n`
