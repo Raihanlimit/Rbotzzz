@@ -1,13 +1,27 @@
-case 'tiktoknowm':
-                     if(!isPremium && !isOwner )return reply(mess.only.prem)
-                     if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(aml.Iv)
-                     if (args.length < 1) return reply('Link?')
-                     lin = args[0]
-                     reply(mess.wait) 
-                     hx.ttdownloader(`${args[0]}`)
-            		.then(result => {
-             		const { wm, nowm, audio } = result
-             		axios.get(`https://tinyurl.com/api-create.php?url=${nowm}`)
-            		.then(async (a) => {
-             		me = `*Link* : ${a.data}`
-	                 Resta.sendMessage(from,{url:`${nowm}`},video,{mimetype:'video/mp4',quoted:mek, caption:me}) 
+let { Presence } = require('@adiwajshing/baileys')
+let fetch = require('node-fetch')
+exports.run = {
+	usage: ['tiktok', 'tikwm', 'tikmp3'],
+	async: async (m, { conn, args, _func, isPrefix, command }) => {
+	try {
+		await conn.updatePresence(m.chat, Presence.composing)
+		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://vt.tiktok.com/ZSJTTSNrS`)
+		m.reply(_func.status.getdata)
+		let json = await (await fetch(global.API('neoxr', '/download/tiktok', { url: args[0] }, 'apikey'))).json()
+		if (!json.status) return m.reply(_func.status.fail)
+		if (command == 'tiktok') {
+			await conn.updatePresence(m.chat, Presence.composing)
+			return conn.sendVideo(m.chat, json.data.video, null, m)
+		} else if (command == 'tikwm') {
+			await conn.updatePresence(m.chat, Presence.composing)
+			return conn.sendVideo(m.chat, json.data.videoWM, null, m)
+		} else if (command == 'tikmp3') {
+			await conn.updatePresence(m.chat, Presence.composing)
+			return conn.sendAudio(m.chat, json.data.audio, false, m)
+		}
+	} catch {
+		return m.reply(_func.status.error)
+	}},
+	error: false,
+	limit: true
+}
