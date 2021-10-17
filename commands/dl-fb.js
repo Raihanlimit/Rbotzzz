@@ -8,7 +8,7 @@ exports.run = {
 		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://www.facebook.com/groups/526925218448628/permalink/570999980707818/`)
 		if (!args[0].match(/(https:\/\/www.facebook.com)/gi)) return m.reply(_func.status.invalid)
 		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/download/fb', { url: args[0] }, 'apikey'))).json()
+		let json = await (await fetch(global.API('neoxr', '/download/fb', { url: args[0] }, 'Raihans'))).json()
 		if (!json.status) return m.reply(_func.status.fail)
 		conn.updatePresence(m.chat, Presence.composing) 
 		let chSize = _func.overSize(json.data.sd.size, 50)
