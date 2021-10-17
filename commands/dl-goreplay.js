@@ -14,5 +14,5 @@ exports.run = {
 	} catch {
 		return m.reply(_func.status.error)
 	}},
-	limit: false
+	limit: true
 }
