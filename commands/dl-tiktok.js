@@ -1,27 +1,19 @@
-let { Presence } = require('@adiwajshing/baileys')
-let fetch = require('node-fetch')
-exports.run = {
-	usage: ['tiktok', 'tikwm', 'tikmp3'],
-	async: async (m, { conn, args, _func, isPrefix, command }) => {
-	try {
-		await conn.updatePresence(m.chat, Presence.composing)
-		if (!args || !args[0]) return m.reply(`• *Example* : ${isPrefix + command} https://vt.tiktok.com/ZSJTTSNrS`)
-		m.reply(_func.status.getdata)
-		let json = await (await fetch(global.API('neoxr', '/download/tiktok', { url: args[0] }, 'GWF8vOVKis'))).json()
-		if (!json.status) return m.reply(_func.status.fail)
-		if (command == 'tiktok') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendVideo(m.chat, json.data.video, null, m)
-		} else if (command == 'tikwm') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendVideo(m.chat, json.data.videoWM, null, m)
-		} else if (command == 'tikmp3') {
-			await conn.updatePresence(m.chat, Presence.composing)
-			return conn.sendAudio(m.chat, json.data.audio, false, m)
-		}
-	} catch {
-		return m.reply(_func.status.error)
-	}},
-	error: false,
-	limit: true
+        let form = new URLSearchParams()
+        form.append('url', url)
+        let json = await (await fetch('https://api.tikmate.app/api/lookup', { method: 'POST', body: form, ...config })).json()
+        if (!json.success) return resolve({ creator: '@neoxrs – Wildan Izzudin', status: false })
+        let postInfo = {
+            author: json.author_name + ' (@' + json.author_id + ')',
+            publish: json.create_time,
+            likes: numbFormat(json.like_count),
+            comments: numbFormat(json.comment_count),
+            shares: numbFormat(json.share_count),
+        }
+        let urlList = {
+            videoSD: 'https://tikmate.app/download/' + json.token + '/' + json.id + '.mp4',
+            videoHD: 'https://tikmate.app/download/' + json.token + '/' + json.id + '.mp4?hd=1'
+        }; resolve({ creator: '@neoxrs – Wildan Izzudin', status: true, ...postInfo, data: urlList })
+    })
 }
+ 
+analyze('https://vt.tiktok.com/ZSe2F5rTC/').then(res => console.log(res))
